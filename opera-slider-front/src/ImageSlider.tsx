@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 import "./ImageSlider.css";
 
 interface Slide {
@@ -18,33 +16,39 @@ interface ImageSliderProps {
 function ImageSlider({ slides }: ImageSliderProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState("slide-right");
-  const [audioSrc, setAudioSrc] = useState(""); // Store the audio source
+  const [audioSrc, setAudioSrc] = useState("");
+  const audioElement = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (slides.length > 0) {
       setCurrentImageIndex(0);
-      setAudioSrc(slides[0].audio); // Set initial audio source
+      setAudioSrc(slides[0].audio);
     }
   }, [slides]);
 
+  useEffect(() => {
+    if (audioElement.current) {
+      audioElement.current.load();
+      audioElement.current.play();
+    }
+  });
+
   const previousImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-    );
+    const prevIndex =
+      currentImageIndex === 0 ? slides.length - 1 : currentImageIndex - 1;
+
+    setCurrentImageIndex(prevIndex);
     setDirection("slide-left");
-    setAudioSrc(slides[currentImageIndex].audio); // Update audio source
+    setAudioSrc(slides[prevIndex].audio);
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
-    );
-    setDirection("slide-right");
-    setAudioSrc(slides[currentImageIndex].audio); // Update audio source
-  };
+    const nextIndex =
+      currentImageIndex === slides.length - 1 ? 0 : currentImageIndex + 1;
 
-  const changeMusic = (newAudioSrc: string) => {
-    setAudioSrc(newAudioSrc); // Update audio source based on user input
+    setCurrentImageIndex(nextIndex);
+    setDirection("slide-right");
+    setAudioSrc(slides[nextIndex].audio);
   };
 
   const currentSlide = slides[currentImageIndex];
@@ -55,8 +59,12 @@ function ImageSlider({ slides }: ImageSliderProps) {
       React.cloneElement(child, {
         classNames: direction,
       });
-  // console.log(slides[currentImageIndex].audio);
-  // console.log(slides[currentImageIndex].title);
+
+  if (currentSlide) {
+    console.log(currentSlide.audio);
+    console.log(currentSlide.title);
+  }
+
   return (
     <div className="image-slider">
       <button onClick={previousImage}>{"<"}</button>
@@ -78,10 +86,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
         </div>
       )}
       <button onClick={nextImage}>{">"}</button>
-      <button onClick={() => changeMusic("your-new-audio-src.mp3")}>
-        Change Music
-      </button>
-      <audio src={audioSrc} controls autoPlay loop />
+      <audio ref={audioElement} src={audioSrc} controls />{" "}
     </div>
   );
 }
