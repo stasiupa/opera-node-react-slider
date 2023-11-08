@@ -67,26 +67,32 @@ function ImageSlider({ slides }: ImageSliderProps) {
 
   return (
     <div className="image-slider">
-      <button onClick={previousImage}>{"<"}</button>
-      {currentSlide !== undefined && (
-        <div className="image-wrapper">
-          <TransitionGroup childFactory={childFactory(direction)}>
-            <CSSTransition
-              key={currentImageIndex}
-              timeout={1000}
-              classNames={direction}
-            >
-              <img
-                src={currentSlide.image}
-                alt={`Image ${currentImageIndex + 1}`}
-                loading="lazy"
-              />
-            </CSSTransition>
-          </TransitionGroup>
+      div.image-slider
+      <div className="image-slider-btns-wrapper">
+        div.image-sldier-btns
+        <div className="image-slider-btns">
+          <button onClick={previousImage}>{"<"}</button>
+          {currentSlide !== undefined && (
+            <div className="image-wrapper">
+              <TransitionGroup childFactory={childFactory(direction)}>
+                <CSSTransition
+                  key={currentImageIndex}
+                  timeout={1000}
+                  classNames={direction}
+                >
+                  <img
+                    src={currentSlide.image}
+                    alt={`Image ${currentImageIndex + 1}`}
+                    loading="lazy"
+                  />
+                </CSSTransition>
+              </TransitionGroup>
+            </div>
+          )}
+          <button onClick={nextImage}>{">"}</button>
         </div>
-      )}
-      <button onClick={nextImage}>{">"}</button>
-      <audio ref={audioElement} src={audioSrc} controls />{" "}
+      </div>
+      <audio ref={audioElement} src={audioSrc} controls />
     </div>
   );
 }

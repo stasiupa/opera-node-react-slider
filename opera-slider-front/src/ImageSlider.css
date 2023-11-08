@@ -1,20 +1,42 @@
+img {
+  border-radius: 5%;
+  object-fit: contain;
+}
+
 .image-slider img {
   width: 200px;
   position: absolute;
 }
 
 .image-slider {
+  align-content: center;
+  margin-top: 10px;
+  justify-items: center;
+  border: 1px black solid;
+}
+.image-slider-btns {
   display: flex;
   align-content: center;
   margin-top: 10px;
-  justify-content: center;
+  justify-items: center;
+  border: 1px black solid;
+  margin: 3px;
+}
+
+.image-slider-btns-wrapper {
+  border: 1px black solid;
+  margin: 2px;
+}
+
+.image-text {
+  display: flex;
 }
 
 .image-wrapper {
   position: relative;
   text-align: left;
   width: 200px;
-  height: 150px;
+  height: 100px;
   overflow: hidden;
 }
 
