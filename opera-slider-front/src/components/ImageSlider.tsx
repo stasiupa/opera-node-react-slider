@@ -18,6 +18,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
   const [direction, setDirection] = useState("slide-right");
   const [audioSrc, setAudioSrc] = useState("");
   const audioElement = useRef<HTMLAudioElement | null>(null);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   useEffect(() => {
     if (slides.length > 0) {
@@ -40,6 +41,10 @@ function ImageSlider({ slides }: ImageSliderProps) {
     setCurrentImageIndex(prevIndex);
     setDirection("slide-left");
     setAudioSrc(slides[prevIndex].audio);
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 1000);
   };
 
   const nextImage = () => {
@@ -49,6 +54,10 @@ function ImageSlider({ slides }: ImageSliderProps) {
     setCurrentImageIndex(nextIndex);
     setDirection("slide-right");
     setAudioSrc(slides[nextIndex].audio);
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 1000);
   };
 
   const currentSlide = slides[currentImageIndex];
@@ -64,9 +73,11 @@ function ImageSlider({ slides }: ImageSliderProps) {
     <div className="image-slider">
       div.image-slider
       <div className="image-slider-btns-wrapper">
-        div.image-sldier-btns
+        div.image-sldier-btns-wrapper
         <div className="image-slider-btns">
-          <button onClick={previousImage}>{"<"}</button>
+          <button onClick={previousImage} disabled={buttonDisabled}>
+            {"<"}
+          </button>
           {currentSlide !== undefined && (
             <div className="image-wrapper">
               <TransitionGroup childFactory={childFactory(direction)}>
@@ -85,7 +96,9 @@ function ImageSlider({ slides }: ImageSliderProps) {
               </TransitionGroup>
             </div>
           )}
-          <button onClick={nextImage}>{">"}</button>
+          <button onClick={nextImage} disabled={buttonDisabled}>
+            {">"}
+          </button>
         </div>
       </div>
       <audio ref={audioElement} src={audioSrc} controls />

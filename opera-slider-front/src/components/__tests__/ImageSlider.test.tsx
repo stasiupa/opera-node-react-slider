@@ -33,7 +33,6 @@ describe("ImageSlider", () => {
   it("renders the first slide initially", () => {
     const { container } = render(<ImageSlider slides={mockSlides} />);
 
-    // Use container to query for the first div element with the "image" class
     expect(container.querySelector(".image")).toBeInTheDocument();
   });
 
@@ -44,7 +43,6 @@ describe("ImageSlider", () => {
 
     fireEvent.click(getByText(">"));
 
-    // Use container to query for the div element of the next slide with the "image" class
     expect(container.querySelector(".image")).toBeInTheDocument();
   });
 
@@ -56,7 +54,6 @@ describe("ImageSlider", () => {
     fireEvent.click(getByText(">"));
     fireEvent.click(getByText("<"));
 
-    // Use container to query for the div element of the previous slide with the "image" class
     expect(container.querySelector(".image")).toBeInTheDocument();
   });
 
