@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <ImageSlider slides={slides} />
     </div>
   );
