@@ -18,7 +18,8 @@ function ImageSlider({ slides }: ImageSliderProps) {
   const [direction, setDirection] = useState("slide-right");
   const [audioSrc, setAudioSrc] = useState("");
   const audioElement = useRef<HTMLAudioElement | null>(null);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
+  const [audioLoaded, setAudioLoaded] = useState(false);
 
   useEffect(() => {
     if (slides.length > 0) {
@@ -32,7 +33,16 @@ function ImageSlider({ slides }: ImageSliderProps) {
       audioElement.current.load();
       audioElement.current.play();
     }
-  });
+  }, [audioLoaded]);
+  const disableButton = () => {
+    if (!isDisabled) {
+      setDisabled(true);
+
+      setTimeout(() => {
+        setDisabled(false);
+      }, 1000);
+    }
+  };
 
   const previousImage = () => {
     const prevIndex =
@@ -41,10 +51,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
     setCurrentImageIndex(prevIndex);
     setDirection("slide-left");
     setAudioSrc(slides[prevIndex].audio);
-    setButtonDisabled(true);
-    setTimeout(() => {
-      setButtonDisabled(false);
-    }, 1000);
+    setAudioLoaded(false);
   };
 
   const nextImage = () => {
@@ -54,10 +61,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
     setCurrentImageIndex(nextIndex);
     setDirection("slide-right");
     setAudioSrc(slides[nextIndex].audio);
-    setButtonDisabled(true);
-    setTimeout(() => {
-      setButtonDisabled(false);
-    }, 1000);
+    setAudioLoaded(false);
   };
 
   const currentSlide = slides[currentImageIndex];
@@ -75,7 +79,10 @@ function ImageSlider({ slides }: ImageSliderProps) {
       <div className="image-slider-btns-wrapper">
         div.image-sldier-btns-wrapper
         <div className="image-slider-btns">
-          <button onClick={previousImage} disabled={buttonDisabled}>
+          <button
+            onClick={() => (previousImage(), disableButton())}
+            disabled={isDisabled}
+          >
             {"<"}
           </button>
           {currentSlide !== undefined && (
@@ -96,12 +103,20 @@ function ImageSlider({ slides }: ImageSliderProps) {
               </TransitionGroup>
             </div>
           )}
-          <button onClick={nextImage} disabled={buttonDisabled}>
+          <button
+            onClick={() => (nextImage(), disableButton())}
+            disabled={isDisabled}
+          >
             {">"}
           </button>
         </div>
       </div>
-      <audio ref={audioElement} src={audioSrc} controls />
+      <audio
+        ref={audioElement}
+        src={audioSrc}
+        controls
+        onLoadedData={() => setAudioLoaded(true)}
+      />
     </div>
   );
 }
