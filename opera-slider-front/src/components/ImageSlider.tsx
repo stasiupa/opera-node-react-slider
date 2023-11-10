@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { AiFillSound, AiOutlineSound } from "react-icons/ai";
 import "./ImageSlider.css";
 
 interface Slide {
@@ -17,9 +18,10 @@ function ImageSlider({ slides }: ImageSliderProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState("slide-right");
   const [audioSrc, setAudioSrc] = useState("");
-  const audioElement = useRef<HTMLAudioElement | null>(null);
+  const audioElement = useRef<HTMLAudioElement>(null);
   const [isDisabled, setDisabled] = useState(false);
   const [audioLoaded, setAudioLoaded] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     if (slides.length > 0) {
@@ -32,16 +34,12 @@ function ImageSlider({ slides }: ImageSliderProps) {
     if (audioElement.current) {
       audioElement.current.load();
       audioElement.current.play();
+      audioElement.current.muted = isMuted;
     }
-  }, [audioLoaded]);
-  const disableButton = () => {
-    if (!isDisabled) {
-      setDisabled(true);
+  }, [audioLoaded, isMuted]);
 
-      setTimeout(() => {
-        setDisabled(false);
-      }, 1000);
-    }
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
   };
 
   const previousImage = () => {
@@ -64,8 +62,6 @@ function ImageSlider({ slides }: ImageSliderProps) {
     setAudioLoaded(false);
   };
 
-  const currentSlide = slides[currentImageIndex];
-
   const childFactory =
     (direction: string) =>
     (child: React.FunctionComponentElement<{ classNames: string }>) =>
@@ -73,16 +69,16 @@ function ImageSlider({ slides }: ImageSliderProps) {
         classNames: direction,
       });
 
+  const currentSlide = slides[currentImageIndex];
+
   return (
     <div className="image-slider">
-      div.image-slider
+      <p className="text">UNMUTE TO GET INTO THE MOOD!</p>
       <div className="image-slider-btns-wrapper">
-        div.image-sldier-btns-wrapper
+        <p className="text">HERE ARE SOME IDEAS FOR THIS WEEKEND!</p>
+
         <div className="image-slider-btns">
-          <button
-            onClick={() => (previousImage(), disableButton())}
-            disabled={isDisabled}
-          >
+          <button onClick={previousImage} disabled={isDisabled}>
             {"<"}
           </button>
           {currentSlide !== undefined && (
@@ -92,21 +88,28 @@ function ImageSlider({ slides }: ImageSliderProps) {
                   key={currentImageIndex}
                   timeout={1000}
                   classNames={direction}
+                  onEnter={() => setDisabled(true)}
+                  onExited={() => setDisabled(false)}
                 >
                   <div
                     style={{
                       backgroundImage: `url(${currentSlide.image})`,
                     }}
                     className="image"
-                  ></div>
+                  >
+                    <div className="text-box">
+                      <h1>{currentSlide.title}</h1>
+                      <h2>{currentSlide.content}</h2>
+                    </div>
+                    <button onClick={toggleMute} className="mute">
+                      {isMuted ? <AiFillSound /> : <AiOutlineSound />}
+                    </button>
+                  </div>
                 </CSSTransition>
               </TransitionGroup>
             </div>
           )}
-          <button
-            onClick={() => (nextImage(), disableButton())}
-            disabled={isDisabled}
-          >
+          <button onClick={nextImage} disabled={isDisabled}>
             {">"}
           </button>
         </div>
@@ -116,6 +119,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
         src={audioSrc}
         controls
         onLoadedData={() => setAudioLoaded(true)}
+        style={{ display: "none" }}
       />
     </div>
   );

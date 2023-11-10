@@ -1,26 +1,26 @@
 {
   "slides": [
     {
-      "title": "Slide 1",
-      "content": "Slide 1 content",
+      "title": "Chill!",
+      "content": "In a beautiful and relaxing setting...",
       "image": "http://localhost:8080/images/picture1.jpg",
       "audio": "http://localhost:8080/audio/reggae.mp3"
     },
     {
-      "title": "Slide 2",
-      "content": "Slide 2 content",
+      "title": "Movie night?",
+      "content": "Only if You like beeing scared!",
       "image": "http://localhost:8080/images/picture2.jpg",
       "audio": "http://localhost:8080/audio/creepy.mp3"
     },
     {
-      "title": "Slide 3",
-      "content": "Slide 3 content",
+      "title": "Adventure",
+      "content": "Head out and face Your fears!",
       "image": "http://localhost:8080/images/picture3.jpg",
       "audio": "http://localhost:8080/audio/funky.mp3"
     },
     {
-      "title": "Slide 4",
-      "content": "Slide 4 content",
+      "title": "Romantic",
+      "content": "Take care of Your significant other...",
       "image": "http://localhost:8080/images/picture4.jpg",
       "audio": "http://localhost:8080/audio/romantic.mp3"
     }

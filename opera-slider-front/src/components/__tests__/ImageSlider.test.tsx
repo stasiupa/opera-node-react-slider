@@ -1,4 +1,4 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import ImageSlider from "../ImageSlider";
 
 describe("ImageSlider", () => {
@@ -43,7 +43,12 @@ describe("ImageSlider", () => {
 
     fireEvent.click(getByText(">"));
 
-    expect(container.querySelector(".image")).toBeInTheDocument();
+    const imageElement = container.querySelector(".image");
+
+    expect(imageElement).toBeInTheDocument();
+    expect(imageElement).toHaveStyle({
+      backgroundImage: `url(${mockSlides[1].image})`, // Assuming the next slide index is 1
+    });
   });
 
   it("navigates to the previous slide when the previous button is clicked", async () => {
@@ -54,7 +59,12 @@ describe("ImageSlider", () => {
     fireEvent.click(getByText(">"));
     fireEvent.click(getByText("<"));
 
-    expect(container.querySelector(".image")).toBeInTheDocument();
+    const imageElement = container.querySelector(".image");
+
+    expect(imageElement).toBeInTheDocument();
+    expect(imageElement).toHaveStyle({
+      backgroundImage: `url(${mockSlides[0].image})`,
+    });
   });
 
   it("updates the audio source when navigating slides", () => {

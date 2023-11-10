@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
 import ImageSlider from "./components/ImageSlider";
+
+import "./App.css";
 
 function App() {
   const [slides, setSlides] = useState([]);
@@ -16,8 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      div.app
+      <p className="text">WELCOME TO MY IMAGE SLIDER! </p>
       <ImageSlider slides={slides} />
+      <p style={{ fontStyle: "italic" }}>
+        Acknowledgment to https://icons8.com/music/ for their watermarked tunes
+      </p>
     </div>
   );
 }

@@ -1,21 +1,25 @@
 .image {
-  border-radius: 5%;
   width: 100%;
   height: 100%;
   position: absolute;
   background-position: center;
   background-size: cover;
+  border-radius: 25px;
+  box-shadow: black;
 }
 
 .image-slider {
   align-content: center;
   justify-items: center;
-  border: 1px black solid;
+  padding: 5px;
+  background-color: transparent;
 }
 
 .image-slider-btns-wrapper {
-  border: 1px black solid;
+  border-radius: 5%;
   margin: 2px;
+  padding: 5px;
+  background-color: transparent;
 }
 
 .image-slider-btns {
@@ -23,12 +27,8 @@
   align-content: center;
   margin-top: 10px;
   justify-items: center;
-  border: 1px black solid;
-  margin: 3px;
-}
-
-.image-text {
-  display: flex;
+  margin: 5px;
+  background-color: transparent;
 }
 
 .image-wrapper {
@@ -39,6 +39,38 @@
   overflow: hidden;
 }
 
+.text-box {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.319);
+  margin: 25px;
+  color: bisque;
+  height: 175px;
+}
+
+.mute {
+  text-align: center;
+  color: red;
+}
+@media (max-width: 780px) {
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+  .text-box {
+    margin: 10px;
+    font-size: 8px;
+    height: 75%;
+    border-radius: 5px;
+  }
+}
+
+/* react-transition-group styles */
 .slide-right-enter {
   transform: translateX(100%);
 }
