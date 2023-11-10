@@ -57,6 +57,7 @@ describe("ImageSlider", () => {
     );
 
     fireEvent.click(getByText(">"));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fireEvent.click(getByText("<"));
 
     const imageElement = container.querySelector(".image");
