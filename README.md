@@ -16,13 +16,13 @@ npm install
 ## Usage
 
 ```bash
-npm run start
+npm start
 ```
 
 ## Run tests
 
 ```bash
-npm run test
+npm test
 ```
 
 ## Author
