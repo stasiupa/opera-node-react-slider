@@ -6,11 +6,11 @@
   "scripts": {
     "install-front": "cd front && npm install",
     "install-server": "cd server && npm install",
-    "start-all": "npm run start-front && npm run start-server && npm run start-tests",
+    "start-all": "npm-run-all --parallel start-front start-server",
     "start-front": "cd front && npm run dev",
     "start-server": "cd server && npm start",
     "start-tests": "cd front && npm test",
-    "install-and-start": "npm install && npm run install-front && npm run install-server && npm run start-all"
+    "install-and-start": "npm-run-all -s install-front install-server --parallel start-all"
   },
   "author": "",
   "license": "ISC",
