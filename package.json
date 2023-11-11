@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-frontend": "cd front && npm run dev",
-    "start-backend": "cd server && npm run start",
-    "start": "npm-run-all --parallel start-frontend start-backend"
+    "install-front": "cd front && npm install",
+    "install-server": "cd server && npm install",
+    "start-all": "npm run start-front && npm run start-server && npm run start-tests",
+    "start-front": "cd front && npm run dev",
+    "start-server": "cd server && npm start",
+    "start-tests": "cd front && npm test",
+    "install-and-start": "npm install && npm run install-front && npm run install-server && npm run start-all"
   },
   "author": "",
   "license": "ISC",

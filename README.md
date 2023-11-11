@@ -7,17 +7,13 @@
 - npm >=9.6.7
 - node >=20.9.0
 
-## Install
-
-```bash
-npm install
-```
-
 ## Usage
 
 ```bash
 npm start
 ```
+
+Navigate to http://localhost:5173/
 
 ## Run tests
 

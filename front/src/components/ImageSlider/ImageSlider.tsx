@@ -9,10 +9,10 @@ function ImageSlider({ slides }: ImageSliderProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState("slide-right");
   const [audioSrc, setAudioSrc] = useState("");
-  const audioElement = useRef<HTMLAudioElement>(null);
   const [isDisabled, setDisabled] = useState(false);
   const [audioLoaded, setAudioLoaded] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const audioElement = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (slides.length > 0) {

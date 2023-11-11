@@ -26,7 +26,6 @@ describe("ImageSlider", () => {
   it("renders no slides when given an empty array", () => {
     const { container } = render(<ImageSlider slides={[]} />);
 
-    // Use container to query for elements by class name and check if none are found
     expect(container.querySelector(".image")).toBeNull();
   });
 
@@ -47,7 +46,7 @@ describe("ImageSlider", () => {
 
     expect(imageElement).toBeInTheDocument();
     expect(imageElement).toHaveStyle({
-      backgroundImage: `url(${mockSlides[1].image})`, // Assuming the next slide index is 1
+      backgroundImage: `url(${mockSlides[1].image})`,
     });
   });
 

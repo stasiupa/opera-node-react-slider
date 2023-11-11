@@ -9,5 +9,12 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: "./src/setup.ts",
-  },
+    server: {
+      deps: {
+        inline: [
+          "type-detect"
+        ]
+      }
+    }
+  }
 });
