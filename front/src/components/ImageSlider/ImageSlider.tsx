@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { AiFillSound, AiOutlineSound } from "react-icons/ai";
+import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
 import { ImageSliderProps } from "../../types/types";
 
 import "./ImageSlider.css";
@@ -64,7 +64,9 @@ function ImageSlider({ slides }: ImageSliderProps) {
 
   return (
     <div className="image-slider">
-      <p className="text">UNMUTE TO GET INTO THE MOOD!</p>
+      <p className="text">
+        UNMUTE BY CLICKING THE RED SPEAKER ICON TO GET INTO THE MOOD!
+      </p>
       <div className="image-slider-btns-wrapper">
         <p className="text">HERE ARE SOME IDEAS FOR THIS WEEKEND!</p>
         <div className="image-slider-btns">
@@ -92,7 +94,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
                       <h2>{currentSlide.content}</h2>
                     </div>
                     <button onClick={toggleMute} className="mute">
-                      {isMuted ? <AiFillSound /> : <AiOutlineSound />}
+                      {isMuted ? <HiSpeakerXMark /> : <HiSpeakerWave />}
                     </button>
                   </div>
                 </CSSTransition>
