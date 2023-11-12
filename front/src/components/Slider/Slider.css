@@ -10,6 +10,7 @@
     transparent 70%
   );
   backdrop-filter: blur(8px);
+  box-sizing: border-box;
 }
 
 .text {
@@ -32,16 +33,36 @@
 }
 
 @media (max-width: 780px) {
-  .text {
-    font-size: small;
-  }
-
   .App {
+    width: 100%;
     padding: 2px;
     border-radius: 3%;
     background-size: cover;
   }
+
+  .text {
+    font-size: small;
+  }
+
   #root {
-    padding: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .App {
+    width: 100%;
+    max-width: none;
+    padding: 2px;
+    border-radius: 3%;
+    background-size: cover;
+  }
+
+  .text {
+    font-size: smaller;
+  }
+
+  #root {
+    padding: 1rem;
   }
 }

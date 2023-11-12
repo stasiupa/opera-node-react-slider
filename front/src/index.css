@@ -30,10 +30,6 @@ button {
   margin: 1px;
 }
 
-button:hover {
-  opacity: 1;
-}
-
 button:disabled,
 button[disabled] {
   opacity: 0.9;
