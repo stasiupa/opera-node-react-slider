@@ -18,7 +18,7 @@ Navigate to http://localhost:5173/ in Your browser!
 ## Run tests
 
 ```bash
-npm start-tests
+npm run start-tests
 ```
 
 ## Author
