@@ -10,7 +10,7 @@
     "start-front": "cd front && npm run dev",
     "start-server": "cd server && npm start",
     "start-tests": "cd front && npm test",
-    "install-and-start": "npm-run-all -s install-front install-server --parallel start-all"
+    "install-and-start": "npm install && npm-run-all -s install-front install-server --parallel start-all"
   },
   "author": "",
   "license": "ISC",

@@ -30,3 +30,18 @@
 .music {
   font-style: italic;
 }
+
+@media (max-width: 780px) {
+  .text {
+    font-size: small;
+  }
+
+  .App {
+    padding: 2px;
+    border-radius: 3%;
+    background-size: cover;
+  }
+  #root {
+    padding: 0.5rem;
+  }
+}

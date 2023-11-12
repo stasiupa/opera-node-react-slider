@@ -10,12 +10,14 @@
 ## Usage
 
 ```bash
-npm start
+npm run start-and-install
 ```
 
 Navigate to http://localhost:5173/
 
 ## Run tests
+
+Navigate to 'front' directory
 
 ```bash
 npm test

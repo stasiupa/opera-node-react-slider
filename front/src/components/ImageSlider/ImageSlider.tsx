@@ -64,9 +64,7 @@ function ImageSlider({ slides }: ImageSliderProps) {
 
   return (
     <div className="image-slider">
-      <p className="text">
-        UNMUTE BY CLICKING THE RED SPEAKER ICON TO GET INTO THE MOOD!
-      </p>
+      <p className="text">UNMUTE BY CLICKING THE RED SPEAKER ICON!</p>
       <div className="image-slider-btns-wrapper">
         <p className="text">HERE ARE SOME IDEAS FOR THIS WEEKEND!</p>
         <div className="image-slider-btns">
