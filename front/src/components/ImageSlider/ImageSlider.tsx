@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
 import { ImageSliderProps } from "../../types/types";
+import ArrowLeft from "../icons/ArrowLeft";
+import ArrowRight from "../icons/ArrowRight";
 
 import "./ImageSlider.css";
 
@@ -68,9 +70,12 @@ function ImageSlider({ slides }: ImageSliderProps) {
       <div className="image-slider-btns-wrapper">
         <p className="text">HERE ARE SOME IDEAS FOR THIS WEEKEND!</p>
         <div className="image-slider-btns">
-          <button onClick={previousImage} disabled={isDisabled}>
-            {"<"}
-          </button>
+          <ArrowLeft
+            onClick={previousImage}
+            className={`arrow ${isDisabled ? "disabled" : ""}`}
+            data-testid="previous"
+            fill={isDisabled ? "grey" : "red"}
+          />
           {currentSlide !== undefined && (
             <div className="image-wrapper">
               <TransitionGroup childFactory={childFactory(direction)}>
@@ -99,9 +104,12 @@ function ImageSlider({ slides }: ImageSliderProps) {
               </TransitionGroup>
             </div>
           )}
-          <button onClick={nextImage} disabled={isDisabled}>
-            {">"}
-          </button>
+          <ArrowRight
+            data-testid="next"
+            onClick={nextImage}
+            className={`arrow ${isDisabled ? "disabled" : ""}`}
+            fill={"red"}
+          />
         </div>
       </div>
       <audio

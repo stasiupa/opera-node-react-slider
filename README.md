@@ -13,14 +13,12 @@
 npm run start-and-install
 ```
 
-Navigate to http://localhost:5173/
+Navigate to http://localhost:5173/ in Your browser!
 
 ## Run tests
 
-Navigate to 'front' directory
-
 ```bash
-npm test
+npm start-tests
 ```
 
 ## Author

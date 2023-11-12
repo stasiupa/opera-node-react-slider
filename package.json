@@ -8,9 +8,9 @@
     "install-front": "cd front && npm install",
     "install-server": "cd server && npm install",
     "start-all": "npm-run-all --parallel start-front start-server",
-    "start-front": "cd front && npm run dev",
+    "start-front": "npm run dev",
     "start-server": "cd server && node server",
-    "start-tests": "cd front && npm run vitest",
+    "start-tests": "cd front && vitest",
     "install-and-start": "npm install && npm run start-all",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },

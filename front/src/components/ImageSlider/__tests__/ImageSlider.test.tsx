@@ -36,11 +36,11 @@ describe("ImageSlider", () => {
   });
 
   it("navigates to the next slide when the next button is clicked", async () => {
-    const { getByText, container } = render(
+    const { container, getByTestId } = render(
       <ImageSlider slides={mockSlides} />
     );
 
-    fireEvent.click(getByText(">"));
+    fireEvent.click(getByTestId("previous"));
 
     const imageElement = container.querySelector(".image");
 
@@ -51,13 +51,13 @@ describe("ImageSlider", () => {
   });
 
   it("navigates to the previous slide when the previous button is clicked", async () => {
-    const { getByText, container } = render(
+    const { getByTestId, container } = render(
       <ImageSlider slides={mockSlides} />
     );
 
-    fireEvent.click(getByText(">"));
+    fireEvent.click(getByTestId("next"));
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    fireEvent.click(getByText("<"));
+    fireEvent.click(getByTestId("previous"));
 
     const imageElement = container.querySelector(".image");
 
@@ -68,10 +68,10 @@ describe("ImageSlider", () => {
   });
 
   it("updates the audio source when navigating slides", () => {
-    const { getByText, container } = render(
+    const { getByTestId, container } = render(
       <ImageSlider slides={mockSlides} />
     );
-    fireEvent.click(getByText(">"));
+    fireEvent.click(getByTestId("next"));
     const audio = container.querySelector("audio");
     expect(audio).toHaveAttribute("src", mockSlides[1].audio);
   });
